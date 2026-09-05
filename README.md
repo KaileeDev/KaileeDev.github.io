@@ -10,7 +10,7 @@ Source URL for Sileo and compatible package managers:
 
 - HiddenSpace / 隐藏空间（rootless）
 - Package ID: `com.hiddenspace.tweak`
-- Current beta candidate: `0.5.0~hiddenspace2-9`
+- Current beta candidate: `0.5.0~hiddenspace2-10`
 - Architecture: `iphoneos-arm64` (rootless; arm64/arm64e binaries are contained by the package build)
 - Firmware dependency: iOS 15.0 <= version < 18.0
 

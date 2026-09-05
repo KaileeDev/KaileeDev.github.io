@@ -1,14 +1,14 @@
 Package: com.hiddenspace.tweak
-Version: 0.5.0~hiddenspace2-9
+Version: 0.5.0~hiddenspace2-10
 Architecture: iphoneos-arm64
 Maintainer: 隐藏空间项目
 Installed-Size: 1220
 Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
-Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-9_iphoneos-arm64.deb
-Size: 176146
-MD5sum: 4269a3258a935a68d3902ab606a6b112
-SHA1: 0e49543fd5a7389b19c2539c3e7016784fbeb13a
-SHA256: 03963402444e1d79977a88227845fc8c3fc1334ddb3849749c7adfc007b35666
+Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-10_iphoneos-arm64.deb
+Size: 179170
+MD5sum: f645a623006ed9e1e9a5027a5e88d4fb
+SHA1: 4e26c803fc4eccda2276726edafbb3b8abbb33e0
+SHA256: 829e36a62a08675fd64518198e55c816057d58bc1fa7ca19a95f1a81d762c3ad
 Section: Tweaks
 Priority: optional
 Description: 通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
@@ -16,4 +16,22 @@ Author: 隐藏空间项目
 Name: HiddenSpace-Rootless
 Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png
 SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json
+
+Package: com.hiddenspace.tweak.roothide
+Version: 0.5.0~hiddenspace2-10+roothide1
+Architecture: iphoneos-arm64e
+Maintainer: 隐藏空间项目
+Installed-Size: 1224
+Depends: firmware (>= 15.0), firmware (<= 17.3.1), mobilesubstrate, roothide, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
+Conflicts: com.hiddenspace.tweak
+Filename: debs/com.hiddenspace.tweak.roothide_0.5.0~hiddenspace2-10+roothide1_iphoneos-arm64e.deb
+Size: 178110
+MD5sum: 319c10a32d97825ad028e15381b483c2
+SHA1: 61641d2b2cb7a0ab01c66daec3c9cbc22fba6b2d
+SHA256: 082681f245104d5871c20ea1d8f323d2c3f4acfe0561a0d11e2a517220d3073a
+Section: Tweaks
+Priority: optional
+Description: RootHide 测试候选版，需 SpringBoard 注入，未真机验证。通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
+Author: 隐藏空间项目
+Name: HiddenSpace-roothide
 
