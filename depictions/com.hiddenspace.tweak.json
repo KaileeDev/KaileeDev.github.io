@@ -27,7 +27,7 @@
         {
           "class": "DepictionMarkdownView",
           "useSpacing": true,
-          "markdown": "# 0.5.0~hiddenspace2-7\n\n- 当前公开 Beta 测试版本\n- iOS 15–17 真机兼容性验证进行中\n- 如遇问题，请通过项目页反馈测试结果"
+          "markdown": "# 0.5.0~hiddenspace2-9\n\n- 当前公开 Beta 测试版本\n- iOS 15–17 真机兼容性验证进行中\n- 如遇问题，请通过项目页反馈测试结果"
         },
         {
           "class": "DepictionTableButtonView",
