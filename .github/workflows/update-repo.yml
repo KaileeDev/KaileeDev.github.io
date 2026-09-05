@@ -1,0 +1,77 @@
+name: Update APT repository index
+
+on:
+  push:
+    paths:
+      - 'debs/*.deb'
+      - '.github/workflows/update-repo.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-index:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dpkg tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y dpkg-dev
+
+      - name: Generate Packages indexes
+        run: |
+          dpkg-scanpackages debs /dev/null > Packages
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('Packages')
+          stanzas = [s for s in path.read_text(encoding='utf-8').strip().split('\n\n') if s.strip()]
+          out = []
+          for stanza in stanzas:
+              lines = stanza.splitlines()
+              package = next((line.split(':', 1)[1].strip() for line in lines if line.startswith('Package:')), '')
+              if package == 'com.hiddenspace.tweak':
+                  if not any(line.startswith('Icon:') for line in lines):
+                      lines.append('Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png')
+                  if not any(line.startswith('SileoDepiction:') for line in lines):
+                      lines.append('SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json')
+              out.append('\n'.join(lines))
+          path.write_text('\n\n'.join(out) + '\n\n', encoding='utf-8')
+          PY
+          gzip -9 -c Packages > Packages.gz
+
+      - name: Update displayed current version
+        run: |
+          latest=$(dpkg-query --showformat='${Version}' --show 2>/dev/null || true)
+          latest_deb=$(find debs -maxdepth 1 -type f -name 'com.hiddenspace.tweak_*_iphoneos-arm64.deb' -print0 | xargs -0 -r dpkg --compare-versions 2>/dev/null || true)
+          version=$(awk '/^Package: com.hiddenspace.tweak$/{f=1} f && /^Version:/{print substr($0,10); exit}' Packages)
+          python3 - "$version" <<'PY'
+          from pathlib import Path
+          import re, sys
+          version = sys.argv[1]
+          p = Path('README.md')
+          text = p.read_text(encoding='utf-8')
+          text = re.sub(r'Current beta candidate: `[^`]+`', f'Current beta candidate: `{version}`', text)
+          p.write_text(text, encoding='utf-8')
+
+          p = Path('debs/README.md')
+          text = p.read_text(encoding='utf-8')
+          text = re.sub(r'`com\.hiddenspace\.tweak_[^`]+_iphoneos-arm64\.deb`', f'`com.hiddenspace.tweak_{version}_iphoneos-arm64.deb`', text)
+          p.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit generated indexes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add Packages Packages.gz README.md debs/README.md
+          if git diff --cached --quiet; then
+            echo 'No index changes.'
+          else
+            git commit -m 'Update APT index'
+            git push
+          fi
