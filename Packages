@@ -13,7 +13,7 @@ Section: Tweaks
 Priority: optional
 Description: 通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
 Author: 隐藏空间项目
-Name: 隐藏空间(rootless)
+Name: HiddenSpace-Rootless
 Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png
 SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json
 
