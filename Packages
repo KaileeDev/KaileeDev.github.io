@@ -1,14 +1,14 @@
 Package: com.hiddenspace.tweak
-Version: 0.5.0~hiddenspace2-8
+Version: 0.5.0~hiddenspace2-9
 Architecture: iphoneos-arm64
 Maintainer: 隐藏空间项目
-Installed-Size: 1204
+Installed-Size: 1220
 Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
-Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-8_iphoneos-arm64.deb
-Size: 170804
-MD5sum: 66c064afb57da7591aa47fd09d24b9a9
-SHA1: 328a513b27bd32c6e97e333ac6428e52753ed767
-SHA256: bbbbe4100831b8a62cb9a45555125660197bc49759d634b407a0ff21d8c63aff
+Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-9_iphoneos-arm64.deb
+Size: 176146
+MD5sum: 4269a3258a935a68d3902ab606a6b112
+SHA1: 0e49543fd5a7389b19c2539c3e7016784fbeb13a
+SHA256: 03963402444e1d79977a88227845fc8c3fc1334ddb3849749c7adfc007b35666
 Section: Tweaks
 Priority: optional
 Description: 通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
