@@ -1,0 +1,8 @@
+Origin: KaileeDev
+Label: KaileeDev Repo
+Suite: stable
+Version: 1.0
+Codename: kaileedev
+Architectures: iphoneos-arm64
+Components: main
+Description: Official repository for HiddenSpace.
