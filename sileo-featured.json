@@ -1,0 +1,13 @@
+{
+  "class": "FeaturedBannersView",
+  "itemSize": "{296, 166}",
+  "itemCornerRadius": 12,
+  "banners": [
+    {
+      "url": "https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png",
+      "title": "HiddenSpace Beta",
+      "package": "com.hiddenspace.tweak",
+      "hideShadow": false
+    }
+  ]
+}
