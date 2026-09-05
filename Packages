@@ -1,0 +1,19 @@
+Package: com.hiddenspace.tweak
+Version: 0.5.0~hiddenspace2-6
+Architecture: iphoneos-arm64
+Maintainer: KaileeDev
+Installed-Size: 1204
+Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
+Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-6_iphoneos-arm64.deb
+Size: 170336
+MD5sum: 60064a132b73f3a402a2e6670dffcef5
+SHA1: dbf4c8d4744a15879b36b3a9905100bc4f2dbde6
+SHA256: 40898290677fb23a3df42f127e33a6dce70ae785e24f110ccdce2e39dd5f83c9
+Section: Tweaks
+Priority: optional
+Description: 通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
+Author: KaileeDev
+Name: 隐藏空间（rootless）
+Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png
+SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json
+
