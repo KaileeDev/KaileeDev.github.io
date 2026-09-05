@@ -35,6 +35,12 @@ jobs:
               lines = stanza.splitlines()
               package = next((line.split(':', 1)[1].strip() for line in lines if line.startswith('Package:')), '')
               if package == 'com.hiddenspace.tweak':
+                  lines = [
+                      'Name: 隐藏空间(rootless)' if line.startswith('Name:') else line
+                      for line in lines
+                  ]
+                  if not any(line.startswith('Name:') for line in lines):
+                      lines.append('Name: 隐藏空间(rootless)')
                   if not any(line.startswith('Icon:') for line in lines):
                       lines.append('Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png')
                   if not any(line.startswith('SileoDepiction:') for line in lines):
@@ -46,8 +52,6 @@ jobs:
 
       - name: Update displayed current version
         run: |
-          latest=$(dpkg-query --showformat='${Version}' --show 2>/dev/null || true)
-          latest_deb=$(find debs -maxdepth 1 -type f -name 'com.hiddenspace.tweak_*_iphoneos-arm64.deb' -print0 | xargs -0 -r dpkg --compare-versions 2>/dev/null || true)
           version=$(awk '/^Package: com.hiddenspace.tweak$/{f=1} f && /^Version:/{print substr($0,10); exit}' Packages)
           python3 - "$version" <<'PY'
           from pathlib import Path
