@@ -1,6 +1,7 @@
 {
   "minVersion": "0.1",
   "class": "DepictionTabView",
+  "headerImage": "https://kaileedev.github.io/depictions/assets/hiddenspace-hero.jpg",
   "tabs": [
     {
       "tabname": "详情",
@@ -8,11 +9,29 @@
       "views": [
         {
           "class": "DepictionMarkdownView",
-          "markdown": "# HiddenSpace\n\n隐藏空间（rootless）是一个面向越狱 iOS 的应用隐藏插件。\n\n**当前状态：Beta / 测试候选版。**\n\n目标系统范围：iOS 15–17。该范围尚未全部完成真机验收，请仅在你能自行排障、禁用或卸载插件的设备上测试。\n\n主要功能：\n- 隐藏主屏幕应用\n- 隐藏 Dock 应用\n- 隐藏文件夹内部及文件夹封面中的选定应用\n- 双指手势进入独立 Hidden Space\n- 可选 Face ID / Touch ID 验证"
+          "useSpacing": true,
+          "markdown": "# HiddenSpace\n\n隐藏空间（rootless）是一个面向越狱 iOS 的应用隐藏插件。\n\n**完全免费，为爱发电。**\n\n**当前状态：Beta / 测试候选版。**\n\n目标系统范围：iOS 15–17。该范围尚未全部完成真机验收，请仅在你能自行排障、禁用或卸载插件的设备上测试。\n\n## 主要功能\n\n- 隐藏主屏幕应用\n- 隐藏 Dock 应用\n- 隐藏文件夹内部及文件夹封面中的选定应用\n- 双指手势进入独立 Hidden Space\n- 可选 Face ID / Touch ID 验证"
         },
         {
           "class": "DepictionTableButtonView",
           "title": "查看项目与测试说明",
+          "action": "https://github.com/KaileeDev/HiddenSpace",
+          "openExternal": true
+        }
+      ]
+    },
+    {
+      "tabname": "更新日志",
+      "class": "DepictionStackView",
+      "views": [
+        {
+          "class": "DepictionMarkdownView",
+          "useSpacing": true,
+          "markdown": "# 0.5.0~hiddenspace2-7\n\n- 当前公开 Beta 测试版本\n- iOS 15–17 真机兼容性验证进行中\n- 如遇问题，请通过项目页反馈测试结果"
+        },
+        {
+          "class": "DepictionTableButtonView",
+          "title": "打开 GitHub 项目页",
           "action": "https://github.com/KaileeDev/HiddenSpace",
           "openExternal": true
         }
