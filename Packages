@@ -1,14 +1,14 @@
 Package: com.hiddenspace.tweak
-Version: 0.5.0~hiddenspace2-11
+Version: 0.5.0~hiddenspace2-12
 Architecture: iphoneos-arm64
 Maintainer: 隐藏空间项目
-Installed-Size: 1220
+Installed-Size: 1316
 Depends: firmware (>= 15.0), firmware (<< 18.0), mobilesubstrate, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
-Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-11_iphoneos-arm64.deb
-Size: 179952
-MD5sum: cefe3094ef255c8c414996f26c5ba656
-SHA1: b68a6b67b9e5f0538b70b9f6a168d6578c6435f0
-SHA256: 03322e897fcf5af5ed0081ca9af01711bcbb740f66b1dfacd54e37068b874eb9
+Filename: debs/com.hiddenspace.tweak_0.5.0~hiddenspace2-12_iphoneos-arm64.deb
+Size: 186800
+MD5sum: 9856638049708d6920d90f6fe25a22cd
+SHA1: ee911e9f5144454a1263f7b35ed141f91afb1fa9
+SHA256: f02320114b312264122a98a0970334198e9d851a6c68575d07bbacfcee3329ba
 Section: Tweaks
 Priority: optional
 Description: 通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
@@ -18,17 +18,17 @@ Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.p
 SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json
 
 Package: com.hiddenspace.tweak.roothide
-Version: 0.5.0~hiddenspace2-11+roothide1
+Version: 0.5.0~hiddenspace2-12+roothide1
 Architecture: iphoneos-arm64e
 Maintainer: 隐藏空间项目
-Installed-Size: 1224
+Installed-Size: 1304
 Depends: firmware (>= 15.0), firmware (<= 17.3.1), mobilesubstrate, roothide, preferenceloader, com.opa334.altlist (>= 1.0.11), ws.hbang.common (>= 2.0)
 Conflicts: com.hiddenspace.tweak
-Filename: debs/com.hiddenspace.tweak.roothide_0.5.0~hiddenspace2-11+roothide1_iphoneos-arm64e.deb
-Size: 179178
-MD5sum: cebc87a5b65052d32f4c5340a77092d3
-SHA1: f775c5803b4a457aacc5da5d9a541fc1910fb5ca
-SHA256: a584c628b7ef23f84e1eb612248c552eaddb1b5fadf76bbaf2ff1b5964295e87
+Filename: debs/com.hiddenspace.tweak.roothide_0.5.0~hiddenspace2-12+roothide1_iphoneos-arm64e.deb
+Size: 185268
+MD5sum: 6da20b533e61889d1de8b0ad190566fe
+SHA1: e368e0719f65056cfe202a59680ce9d0842f293a
+SHA256: 938828f9c871aa2299684acd6429aeb0c9c6f1a6d7e209c0f621e30cd8d57b8c
 Section: Tweaks
 Priority: optional
 Description: RootHide 测试候选版，需 SpringBoard 注入，未真机验证。通过双指手势打开独立隐藏应用空间，支持可选身份验证、隐藏应用通知、实时配置同步和无空位图标紧凑排列。
