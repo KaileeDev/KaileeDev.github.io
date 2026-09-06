@@ -10,13 +10,13 @@ Source URL for Sileo and compatible package managers:
 
 ### HiddenSpace / 隐藏空间（rootless）
 - Package ID: `com.hiddenspace.tweak`
-- Current beta candidate: `0.5.0~hiddenspace2-10`
+- Current beta candidate: `0.5.0~hiddenspace2-11`
 - Architecture: `iphoneos-arm64`
 - Firmware dependency: iOS 15.0 <= version < 18.0
 
 ### HiddenSpace / 隐藏空间（RootHide）
 - Package ID: `com.hiddenspace.tweak.roothide`
-- Current beta candidate: `0.5.0~hiddenspace2-10+roothide1`
+- Current beta candidate: `0.5.0~hiddenspace2-11`
 - Architecture: `iphoneos-arm64e`
 - Firmware dependency: iOS 15.0 <= version <= 17.3.1
 - Requires RootHide environment
