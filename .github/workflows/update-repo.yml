@@ -30,42 +30,99 @@ jobs:
 
           path = Path('Packages')
           stanzas = [s for s in path.read_text(encoding='utf-8').strip().split('\n\n') if s.strip()]
+
+          metadata = {
+              'com.hiddenspace.tweak': {
+                  'Name': 'HiddenSpace-Rootless',
+                  'Icon': 'https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png',
+                  'SileoDepiction': 'https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json',
+              },
+              'com.hiddenspace.tweak.roothide': {
+                  'Name': 'HiddenSpace-roothide',
+                  'Icon': 'https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png',
+                  'SileoDepiction': 'https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json',
+              },
+          }
+
           out = []
           for stanza in stanzas:
               lines = stanza.splitlines()
               package = next((line.split(':', 1)[1].strip() for line in lines if line.startswith('Package:')), '')
-              if package == 'com.hiddenspace.tweak':
-                  lines = [
-                      'Name: HiddenSpace-Rootless' if line.startswith('Name:') else line
-                      for line in lines
-                  ]
-                  if not any(line.startswith('Name:') for line in lines):
-                      lines.append('Name: HiddenSpace-Rootless')
-                  if not any(line.startswith('Icon:') for line in lines):
-                      lines.append('Icon: https://raw.githubusercontent.com/KaileeDev/HiddenSpace/main/assets/icon.png')
-                  if not any(line.startswith('SileoDepiction:') for line in lines):
-                      lines.append('SileoDepiction: https://kaileedev.github.io/depictions/com.hiddenspace.tweak.json')
+              wanted = metadata.get(package)
+              if wanted:
+                  seen = set()
+                  new_lines = []
+                  for line in lines:
+                      key = line.split(':', 1)[0] if ':' in line else ''
+                      if key in wanted:
+                          new_lines.append(f'{key}: {wanted[key]}')
+                          seen.add(key)
+                      else:
+                          new_lines.append(line)
+                  for key, value in wanted.items():
+                      if key not in seen:
+                          new_lines.append(f'{key}: {value}')
+                  lines = new_lines
               out.append('\n'.join(lines))
+
           path.write_text('\n\n'.join(out) + '\n\n', encoding='utf-8')
           PY
           gzip -9 -c Packages > Packages.gz
 
-      - name: Update displayed current version
+      - name: Update displayed current versions
         run: |
-          version=$(awk '/^Package: com.hiddenspace.tweak$/{f=1} f && /^Version:/{print substr($0,10); exit}' Packages)
-          python3 - "$version" <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
-          import re, sys
-          version = sys.argv[1]
+
+          def package_versions(path):
+              versions = {}
+              stanzas = [s for s in Path(path).read_text(encoding='utf-8').strip().split('\n\n') if s.strip()]
+              for stanza in stanzas:
+                  fields = {}
+                  for line in stanza.splitlines():
+                      if ': ' in line:
+                          key, value = line.split(': ', 1)
+                          fields[key] = value
+                  package = fields.get('Package')
+                  version = fields.get('Version')
+                  if package and version:
+                      versions[package] = version
+              return versions
+
+          versions = package_versions('Packages')
+          rootless = versions.get('com.hiddenspace.tweak')
+          roothide = versions.get('com.hiddenspace.tweak.roothide')
+          if not rootless or not roothide:
+              raise SystemExit('Missing rootless or RootHide package in Packages index')
+
           p = Path('README.md')
-          text = p.read_text(encoding='utf-8')
-          text = re.sub(r'Current beta candidate: `[^`]+`', f'Current beta candidate: `{version}`', text)
-          p.write_text(text, encoding='utf-8')
+          lines = p.read_text(encoding='utf-8').splitlines()
+          section = None
+          out = []
+          for line in lines:
+              if line == '### HiddenSpace / 隐藏空间（rootless）':
+                  section = 'rootless'
+              elif line == '### HiddenSpace / 隐藏空间（RootHide）':
+                  section = 'roothide'
+              elif line.startswith('### '):
+                  section = None
+
+              if line.startswith('- Current beta candidate: `'):
+                  if section == 'rootless':
+                      line = f'- Current beta candidate: `{rootless}`'
+                  elif section == 'roothide':
+                      line = f'- Current beta candidate: `{roothide}`'
+              out.append(line)
+          p.write_text('\n'.join(out) + '\n', encoding='utf-8')
 
           p = Path('debs/README.md')
-          text = p.read_text(encoding='utf-8')
-          text = re.sub(r'`com\.hiddenspace\.tweak_[^`]+_iphoneos-arm64\.deb`', f'`com.hiddenspace.tweak_{version}_iphoneos-arm64.deb`', text)
-          p.write_text(text, encoding='utf-8')
+          p.write_text(
+              '# Packages\n\n'
+              'Place published `.deb` files in this directory. The current `Packages` index expects:\n\n'
+              f'- `com.hiddenspace.tweak_{rootless}_iphoneos-arm64.deb`\n'
+              f'- `com.hiddenspace.tweak.roothide_{roothide}_iphoneos-arm64e.deb`\n',
+              encoding='utf-8',
+          )
           PY
 
       - name: Commit generated indexes
